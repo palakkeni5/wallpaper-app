@@ -26,6 +26,13 @@ jobs:
         with:
           java-version: 17
           distribution: 'temurin'
+      - name: Decode Keystore
+        env:
+          ENCODED_STRING: ${{ secrets.KEYSTORE }}
+        run: |
+          TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
+          mkdir "${TMP_KEYSTORE_FILE_PATH}"
+          echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
       - name: Build Android Release
@@ -38,8 +45,8 @@ jobs:
           releaseDirectory: ${{ github.workspace}}/app-name/android/app/build/outputs/apk/release
           # signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
           # alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
-          # keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
-          # keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
+          keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
       - name: Upload APK
         id: uploadArtifact
         uses: actions/upload-artifact@v2
