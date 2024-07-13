@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Install react native
-        run: npm i react-native@0.74.2
+        run: npm i -g react-native-cli
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
