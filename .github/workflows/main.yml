@@ -3,7 +3,8 @@ name: Android Build
 on:
   push:
     branches: ['main', 'feature/github-actions-build']
-
+env:
+  PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
 jobs:
   android-build:
     name: Android Build
