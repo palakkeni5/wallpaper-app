@@ -3,7 +3,8 @@ name: Android Build
 on:
   push:
     branches: ['main', 'feature/github-actions-build']
-
+env:
+  PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
 jobs:
   android-build:
     name: Android Build
@@ -21,6 +22,8 @@ jobs:
           node-version: 20.12.2
       - name: Install dependencies
         run: npm install
+      - name: Install react native
+        run: npm i -g react-native-cli
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
@@ -40,30 +43,29 @@ jobs:
           echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
           echo Last build tool version is: $BUILD_TOOL_VERSION
       - name: Make Gradlew Executable
-        run: cd android && chmod +x ./gradlew
+        run: cd android && chmod +x ./gradlew && ./gradlew clean
+      - name: Create React Native bundle for android production
+        run: react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       - name: Build Android Release
         run: |
-          cd android && ./gradlew clean && ./gradlew app:assembleRelease
+          cd android && ./gradlew app:assembleRelease
         env:
           MYAPP_UPLOAD_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
           MYAPP_UPLOAD_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-      - name: Sign APK
-        id: sign_app
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: ${{ github.workspace}}/android/app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.KEYSTORE }}
-          alias: palak-keni-alias
-          keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-        env:
-          BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
+      # - name: Sign APK
+      #   id: sign_app
+      #   uses: r0adkll/sign-android-release@v1
+      #   with:
+      #     releaseDirectory: ${{ github.workspace}}/android/app/build/outputs/apk/release
+      #     signingKeyBase64: ${{ secrets.KEYSTORE }}
+      #     alias: palak-keni-alias
+      #     keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
+      #     keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
+      #   env:
+      #     BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
       - name: Upload APK
         id: uploadArtifact
         uses: actions/upload-artifact@v2
         with:
           name: app
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
-      - name: Clean up
-        if: always()
-        run: npm uninstall -g yarn
+          path: ${{ github.workspace}}/android/app/build/outputs/apk/release
