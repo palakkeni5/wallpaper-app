@@ -45,9 +45,9 @@ jobs:
         id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: ${{ github.workspace}}/app-name/android/app/build/outputs/apk/release
-          # signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
-          # alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
+          releaseDirectory: ${{ github.workspace}}/android/app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.KEYSTORE }}
+          alias: palak-keni-alias
           keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
           keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
       - name: Upload APK
