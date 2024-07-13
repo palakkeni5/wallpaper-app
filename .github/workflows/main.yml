@@ -59,13 +59,13 @@ jobs:
           name: app
           path: ${{ github.workspace}}/android/app/build/outputs/apk/release
       - name: Generate release tag
-        id: tag
-        run: |
-          echo "::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")"
+        shell: bash
+        run: echo "branch=${BRANCH_NAME}_$(date +"%Y.%m.%d_%H-%M")" >> $GITHUB_OUTPUT
+        id: extract_branch
       - name: create new release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.tag.outputs.release_tag }}
+          tag_name: ${{ steps.extract_branch.outputs.branch }}
           files: |
             ${{ github.workspace}}/android/app/build/outputs/apk/release/app-release.apk
         env:
