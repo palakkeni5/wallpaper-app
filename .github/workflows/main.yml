@@ -7,12 +7,16 @@ on:
 jobs:
   android-build:
     name: Android Build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
+      - name: Show self-hosted machine infomation
+        run: uname -a
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
       - name: Check out Git repository
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: yarn install --network-timeout 300000
+        run: yarn install
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
       - name: Build Android Release
