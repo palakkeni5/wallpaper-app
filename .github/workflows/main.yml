@@ -6,6 +6,8 @@ on:
 env:
   PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+permissions:
+  contents: write
 jobs:
   android-build:
     name: Android Build
@@ -69,5 +71,3 @@ jobs:
           tag_name: ${{ steps.extract_branch.outputs.branch }}
           files: |
             ${{ github.workspace}}/android/app/build/outputs/apk/release/app-release.apk
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
