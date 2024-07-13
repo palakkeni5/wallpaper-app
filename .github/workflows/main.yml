@@ -22,7 +22,7 @@ jobs:
       - name: Install yarn
         run: npm install -g yarn
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn set version 3.6.4 && yarn install --immutable
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
       - name: Build Android Release
