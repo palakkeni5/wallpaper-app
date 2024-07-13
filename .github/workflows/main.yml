@@ -12,7 +12,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --network-timeout 300000
+        run: yarn install --network-timeout 300000
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
       - name: Build Android Release
