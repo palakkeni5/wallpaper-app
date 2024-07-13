@@ -21,6 +21,8 @@ jobs:
           node-version: 20.12.2
       - name: Install dependencies
         run: npm install
+      - name: Install react native
+        run: npm i react-native@0.74.2
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
@@ -43,25 +45,23 @@ jobs:
         run: react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
-      - name: Create React Native bundle for android production
-        run: react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       - name: Build Android Release
         run: |
           cd android && ./gradlew clean && ./gradlew app:assembleRelease
         env:
           MYAPP_UPLOAD_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
           MYAPP_UPLOAD_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-      - name: Sign APK
-        id: sign_app
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: ${{ github.workspace}}/android/app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.KEYSTORE }}
-          alias: palak-keni-alias
-          keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-        env:
-          BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
+      # - name: Sign APK
+      #   id: sign_app
+      #   uses: r0adkll/sign-android-release@v1
+      #   with:
+      #     releaseDirectory: ${{ github.workspace}}/android/app/build/outputs/apk/release
+      #     signingKeyBase64: ${{ secrets.KEYSTORE }}
+      #     alias: palak-keni-alias
+      #     keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
+      #     keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
+      #   env:
+      #     BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
       - name: Upload APK
         id: uploadArtifact
         uses: actions/upload-artifact@v2
