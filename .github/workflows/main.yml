@@ -5,6 +5,7 @@ on:
     branches: ['main', 'feature/github-actions-build']
 env:
   PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 jobs:
   android-build:
     name: Android Build
