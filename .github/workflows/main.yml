@@ -5,6 +5,9 @@ on:
     branches: ['main', 'feature/github-actions-build']
 env:
   PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+permissions:
+  contents: write
 jobs:
   android-build:
     name: Android Build
@@ -52,20 +55,19 @@ jobs:
         env:
           MYAPP_UPLOAD_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
           MYAPP_UPLOAD_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-      # - name: Sign APK
-      #   id: sign_app
-      #   uses: r0adkll/sign-android-release@v1
-      #   with:
-      #     releaseDirectory: ${{ github.workspace}}/android/app/build/outputs/apk/release
-      #     signingKeyBase64: ${{ secrets.KEYSTORE }}
-      #     alias: palak-keni-alias
-      #     keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
-      #     keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-      #   env:
-      #     BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
       - name: Upload APK
         id: uploadArtifact
         uses: actions/upload-artifact@v2
         with:
           name: app
           path: ${{ github.workspace}}/android/app/build/outputs/apk/release
+      - name: Generate release tag
+        shell: bash
+        run: echo "branch=${BRANCH_NAME}_$(date +"%Y.%m.%d_%H-%M")" >> $GITHUB_OUTPUT
+        id: extract_branch
+      - name: create new release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.extract_branch.outputs.branch }}
+          files: |
+            ${{ github.workspace}}/android/app/build/outputs/apk/release/app-release.apk
