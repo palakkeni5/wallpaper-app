@@ -20,9 +20,7 @@ jobs:
         with:
           node-version: 20.12.2
       - name: Install yarn
-        run: npm install -g yarn
-      - name: Install dependencies
-        run: yarn set version 3.6.4 && yarn install --immutable
+        run: npm install
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
       - name: Build Android Release
