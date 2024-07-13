@@ -38,6 +38,7 @@ const renderSeparator = () => (
 export const HomeScreen = ({navigation}) => {
   const [topPicks, setTopPicks] = useState([]);
   const isCarousel = React.useRef(null);
+  const [searchValue, setSearchValue] = useState('');
 
   const findImagesForTopPicks = () => {
     const query = 'Wallpapers for android';
@@ -150,8 +151,11 @@ export const HomeScreen = ({navigation}) => {
                 }}
                 placeholder="Search For Free Wallpaper"
                 placeholderTextColor="gray"
-                // value={this.state.searchQuery}
-                // onChangeText={(value)=>this.setState({ searchQuery : value })}
+                value={searchValue}
+                onChangeText={value => setSearchValue(value)}
+                onSubmitEditing={() =>
+                  navigation.navigate('ImageLists', {query: searchValue})
+                }
               />
               <TouchableOpacity
                 style={{
@@ -160,8 +164,9 @@ export const HomeScreen = ({navigation}) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}
-                // onPress={()=>this.props.navigation.navigate("FullCatogery",{ "query" : this.state.searchQuery })}
-              >
+                onPress={() =>
+                  navigation.navigate('ImageLists', {query: searchValue})
+                }>
                 <Icon name="search1" color="#FFF" size={15} />
               </TouchableOpacity>
             </Animated.View>
