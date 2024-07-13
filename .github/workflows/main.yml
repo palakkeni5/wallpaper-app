@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          path: ${{ github.workspace}}/android/app/build/outputs/apk/release
       - name: Clean up
         if: always()
         run: npm uninstall -g yarn
