@@ -38,6 +38,9 @@ jobs:
       - name: Build Android Release
         run: |
           cd android && ./gradlew clean && ./gradlew app:assembleRelease
+        env:
+          - MYAPP_UPLOAD_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
+          - MYAPP_UPLOAD_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
       - name: Sign APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
