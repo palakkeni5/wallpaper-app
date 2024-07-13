@@ -2,7 +2,7 @@ name: Android Build
 
 on:
   push:
-    branches: ['main', 'feature/github-actions-builds']
+    branches: ['main', 'feature/github-actions-build']
 
 jobs:
   android-build:
@@ -32,7 +32,7 @@ jobs:
         run: |
           TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
           mkdir "${TMP_KEYSTORE_FILE_PATH}"
-          echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
+          echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/palak_keystore.jks
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
       - name: Build Android Release
