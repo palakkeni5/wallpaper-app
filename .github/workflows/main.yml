@@ -15,8 +15,14 @@ jobs:
         uses: styfle/cancel-workflow-action@0.9.1
       - name: Check out Git repository
         uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+      - name: Install yarn
+        run: npm install -g yarn
       - name: Install dependencies
-        run: yarn set version latest --yarn-path && yarn install  --immutable
+        run: yarn install immutable
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
       - name: Build Android Release
@@ -37,3 +43,6 @@ jobs:
         with:
           name: app
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
+      - name: Clean up
+        if: always()
+        run: npm uninstall -g yarn
