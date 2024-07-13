@@ -52,20 +52,16 @@ jobs:
         env:
           MYAPP_UPLOAD_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
           MYAPP_UPLOAD_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-      # - name: Sign APK
-      #   id: sign_app
-      #   uses: r0adkll/sign-android-release@v1
-      #   with:
-      #     releaseDirectory: ${{ github.workspace}}/android/app/build/outputs/apk/release
-      #     signingKeyBase64: ${{ secrets.KEYSTORE }}
-      #     alias: palak-keni-alias
-      #     keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
-      #     keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-      #   env:
-      #     BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
       - name: Upload APK
         id: uploadArtifact
         uses: actions/upload-artifact@v2
         with:
           name: app
           path: ${{ github.workspace}}/android/app/build/outputs/apk/release
+      - name: Release with Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ${{ github.workspace}}/android/app/build/outputs/apk/release/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
