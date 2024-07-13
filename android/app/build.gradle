@@ -97,8 +97,8 @@ android {
 
             if (allFilesFromDir != null) {
                 def keystoreFile = allFilesFromDir.first()
-                keystoreFile.renameTo("keystore/palak_keystore.jks")
-                storeFile = file("keystore/palak_keystore.jks")
+                // keystoreFile.renameTo("keystore/palak_keystore.jks")
+                storeFile = file(keystoreFile)
             }else{
                 storeFile file(MYAPP_UPLOAD_STORE_FILE)
             }
