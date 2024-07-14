@@ -2,10 +2,9 @@
 
 A simple wallpaper app for your android phone to discover and personalize your device with a sleek wallpaper. Browse a stunning grid of high-quality images from Prexels API. Download and customize your home screens, and enhance your display with stylish clock and weather widgets. Elevate your mobile experience with just a few taps..
 ## App preview
-| App home page  | Set wallpapers | 
-| ------------- | ------------- |
-| <img src="https://github.com/user-attachments/assets/62e81746-156a-4b3f-8c0f-c32aaac263f8" width="240" height="480"> | <img src="https://github.com/user-attachments/assets/bb72f134-d136-4524-96ea-997a2eef1343"  width="240" height="480">  | 
-
+| App home page  | Set wallpapers | Search wallpapers | Search categories |
+| ------------- | ------------- | ------------- | ------------- |
+| <img src="https://github.com/user-attachments/assets/62e81746-156a-4b3f-8c0f-c32aaac263f8" width="240" height="480"> | <img src="https://github.com/user-attachments/assets/bb72f134-d136-4524-96ea-997a2eef1343"  width="240" height="480">  | <img src="https://github.com/palakkeni5/wallpaper-app/blob/feature/update-readme/assets/gifs/wallpaper-app-search-wallpaper-gif.gif?raw=true" width="240" height="480"> | <img src="https://github.com/palakkeni5/wallpaper-app/blob/feature/update-readme/assets/gifs/wallpaper-app-categories-gif.gif?raw=true" width="240" height="480">
 
 
 
