@@ -132,7 +132,7 @@ export const HomeScreen = ({navigation}) => {
               </Text>
               <Text style={{fontSize: 18, fontWeight: 'bold', color: '#FFF'}}>
                 {' '}
-                Quality Wallpaper's{' '}
+                Quality Wallpapes{' '}
               </Text>
             </Animated.View>
 
