@@ -1,6 +1,12 @@
 # Wallpaper App
 
-A simple wallpaper app for your phone to discover and personalize your device with a sleek wallpaper. Browse a stunning grid of high-quality images from Prexels API. Download and customize your home screens, and enhance your display with stylish clock and weather widgets. Elevate your mobile experience with just a few taps..
+A simple wallpaper app for your android phone to discover and personalize your device with a sleek wallpaper. Browse a stunning grid of high-quality images from Prexels API. Download and customize your home screens, and enhance your display with stylish clock and weather widgets. Elevate your mobile experience with just a few taps..
+## App preview
+
+<img src="https://github.com/user-attachments/assets/62e81746-156a-4b3f-8c0f-c32aaac263f8" width="250" height="500">
+<img src="https://github.com/user-attachments/assets/e41f622e-7bea-4356-a94d-7c746a7cf239" width="250" height="500">
+<img src="https://github.com/user-attachments/assets/779b029a-9caa-4a12-bed1-d696e11a5091" width="250" height="500">
+
 
 ## Description
 
