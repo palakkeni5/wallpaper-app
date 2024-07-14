@@ -20,7 +20,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Carousel from 'react-native-reanimated-carousel';
 import {PEXELS_API_KEY} from '@env';
 import {categories} from '../assets/categories-data';
-const backgroundImage = require('../assets/homeScreenImage.png');
+const backgroundImage = require('../assets/homeScreenImage-1.png');
 const client = createClient(PEXELS_API_KEY);
 
 const Dev_Height = Dimensions.get('screen').height;
@@ -45,10 +45,6 @@ export const HomeScreen = ({navigation}) => {
     client.photos.search({query, per_page: 10}).then(data => {
       const photosData = data['photos'];
       setTopPicks(photosData);
-      // photosData.forEach(p =>{
-      //   console.log(p['src']['medium'])
-      // })
-      // console.log(data['photos']);
     });
   };
 
@@ -129,15 +125,14 @@ export const HomeScreen = ({navigation}) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 marginTop: '5%',
-                // transform: [{translateX:this.state.x}]
               }}>
               <Text style={{fontSize: 18, fontWeight: 'bold', color: '#FFF'}}>
                 {' '}
-                Check Out All The High{' '}
+                Discover High{' '}
               </Text>
               <Text style={{fontSize: 18, fontWeight: 'bold', color: '#FFF'}}>
                 {' '}
-                Quality Wallpaper's{' '}
+                Quality Wallpapers{' '}
               </Text>
             </Animated.View>
 
@@ -195,11 +190,9 @@ export const HomeScreen = ({navigation}) => {
             <Carousel
               loop={true}
               autoPlay={true}
-              // style={{ width: Dev_Width }}
               width={Dev_Width}
               data={topPicks}
               renderItem={_renderTopPicks}
-              // customAnimation={animationStyle}
               scrollAnimationDuration={2000}
             />
           </View>
@@ -230,7 +223,6 @@ export const HomeScreen = ({navigation}) => {
                 width: '93%',
               }}
               data={categories}
-              // keyExtractor={({ _id }, index) => _id}
               renderItem={_renderItemCatogories}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
