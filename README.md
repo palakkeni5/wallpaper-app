@@ -4,7 +4,7 @@ A simple wallpaper app for your phone to discover and personalize your device wi
 ## App preview
 | App home page  | Set wallpapers | Search wallpapers | Search categories |
 | ------------- | ------------- | ------------- | ------------- |
-| <img src="https://github.com/user-attachments/assets/62e81746-156a-4b3f-8c0f-c32aaac263f8" width="200" height="400"> | <img src="https://github.com/user-attachments/assets/bb72f134-d136-4524-96ea-997a2eef1343"  width="200" height="400">  | <img src="https://github.com/palakkeni5/wallpaper-app/blob/main/assets/gifs/wallpaper-app-search-wallpaper-gif.gif?raw=true" width="200" height="400"> | <img src="https://github.com/palakkeni5/wallpaper-app/blob/main/assets/gifs/wallpaper-app-categories-gif.gif?raw=true" width="200" height="400">
+| <img src="https://github.com/user-attachments/assets/62e81746-156a-4b3f-8c0f-c32aaac263f8" width="150" height="300"> | <img src="https://github.com/user-attachments/assets/bb72f134-d136-4524-96ea-997a2eef1343"  width="150" height="300">  | <img src="https://github.com/palakkeni5/wallpaper-app/blob/main/assets/gifs/wallpaper-app-search-wallpaper-gif.gif?raw=true" width="150" height="300"> | <img src="https://github.com/palakkeni5/wallpaper-app/blob/main/assets/gifs/wallpaper-app-categories-gif.gif?raw=true" width="150" height="300">
 
 
 
