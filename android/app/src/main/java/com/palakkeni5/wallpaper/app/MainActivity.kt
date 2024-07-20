@@ -1,4 +1,4 @@
-package com.wallpaperapp
+package com.palakkeni5.wallpaper.app
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

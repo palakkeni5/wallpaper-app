@@ -1,4 +1,4 @@
-package com.wallpaperapp
+package com.palakkeni5.wallpaper.app
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -74,9 +74,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.wallpaperapp"
+    namespace "com.palakkeni5.wallpaper.app"
     defaultConfig {
-        applicationId "com.wallpaperapp"
+        applicationId "com.palakkeni5.wallpaper.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
