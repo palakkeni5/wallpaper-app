@@ -2,7 +2,7 @@ name: Android Build
 
 on:
   push:
-    branches: ['main', 'feature/github-actions-build']
+    branches: ['prod']
 env:
   PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
